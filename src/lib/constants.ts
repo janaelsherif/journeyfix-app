@@ -1,0 +1,62 @@
+export const PROFESSION_CATEGORIES = [
+  { value: "DENTIST", label: "Zahnarzt", labelEn: "Dentist" },
+  { value: "LAWYER", label: "Anwalt", labelEn: "Lawyer" },
+  { value: "VET", label: "Tierarzt", labelEn: "Veterinarian" },
+  { value: "TAX_ADVISOR", label: "Steuerberater", labelEn: "Tax Advisor" },
+  { value: "PHYSIOTHERAPIST", label: "Physiotherapeut", labelEn: "Physiotherapist" },
+  { value: "DOCTOR_GENERAL", label: "Arzt (Allgemein)", labelEn: "General Doctor" },
+  { value: "PSYCHOLOGIST", label: "Psychologe", labelEn: "Psychologist" },
+  { value: "ACCOUNTANT", label: "Buchhalter", labelEn: "Accountant" },
+  { value: "OTHER", label: "Andere", labelEn: "Other" },
+] as const;
+
+export const CANTONS = [
+  { value: "AG", label: "Aargau" },
+  { value: "BS", label: "Basel-Stadt" },
+  { value: "BL", label: "Basel-Landschaft" },
+  { value: "BE", label: "Bern" },
+  { value: "ZH", label: "Zürich" },
+  { value: "SO", label: "Solothurn" },
+  { value: "LU", label: "Luzern" },
+  { value: "VD", label: "Waadt" },
+  { value: "GE", label: "Genf" },
+  { value: "VS", label: "Wallis" },
+  { value: "SG", label: "St. Gallen" },
+  { value: "GR", label: "Graubünden" },
+  { value: "TI", label: "Tessin" },
+  { value: "FR", label: "Freiburg" },
+  { value: "NE", label: "Neuenburg" },
+  { value: "JU", label: "Jura" },
+  { value: "UR", label: "Uri" },
+  { value: "SZ", label: "Schwyz" },
+  { value: "OW", label: "Obwalden" },
+  { value: "NW", label: "Nidwalden" },
+  { value: "GL", label: "Glarus" },
+  { value: "ZG", label: "Zug" },
+  { value: "SH", label: "Schaffhausen" },
+  { value: "AR", label: "Appenzell Ausserrhoden" },
+  { value: "AI", label: "Appenzell Innerrhoden" },
+] as const;
+
+/** How many journey scenarios to score per free scan (fewer = faster API phase). Target ~1 min total. */
+export const FREE_SCAN_USE_CASE_COUNT = 2;
+
+export const USE_CASES = [
+  { id: "phone_visibility", name: "Telefonnummer in 5 Sekunden finden", nameEn: "Find phone number in 5 seconds", category: "Contact", weight: 2.0 },
+  { id: "email_visibility", name: "E-Mail-Adresse in 10 Sekunden finden", nameEn: "Find email address in 10 seconds", category: "Contact", weight: 1.5 },
+  { id: "contact_form_mobile", name: "Kontaktformular auf Mobile ausfüllen", nameEn: "Fill contact form on mobile", category: "Contact", weight: 1.5 },
+  { id: "online_booking", name: "Termin online buchen", nameEn: "Book appointment online", category: "Booking", weight: 1.8 },
+  { id: "opening_hours", name: "Öffnungszeiten sofort finden", nameEn: "Find opening hours immediately", category: "Booking", weight: 1.4 },
+  { id: "map_location", name: "Praxis auf Karte lokalisieren", nameEn: "Locate practice on map", category: "Information", weight: 1.2 },
+  { id: "services_listed", name: "Angebotene Leistungen verstehen", nameEn: "Understand services offered", category: "Information", weight: 1.3 },
+  { id: "pricing_insurance", name: "Kosten/Versicherung verstehen", nameEn: "Understand costs/insurance", category: "Information", weight: 1.2 },
+  { id: "team_presentation", name: "Praxis-Team kennenlernen", nameEn: "Meet the practice team", category: "Trust", weight: 1.5 },
+  { id: "testimonials", name: "Bewertungen lesen", nameEn: "Read reviews", category: "Trust", weight: 1.3 },
+  { id: "emergency_contact", name: "Notfallkontakt finden", nameEn: "Find emergency contact", category: "Contact", weight: 1.8 },
+  { id: "mobile_responsive", name: "Website auf Mobile nutzen", nameEn: "Use website on mobile", category: "Technical", weight: 1.4 },
+  { id: "page_load_speed", name: "Seite in 3 Sekunden laden", nameEn: "Page loads in 3 seconds", category: "Technical", weight: 1.2 },
+  { id: "clear_navigation", name: "Ohne Verwirrung navigieren", nameEn: "Navigate without confusion", category: "Technical", weight: 1.2 },
+  { id: "privacy_policy", name: "Datenschutz verstehen", nameEn: "Understand privacy policy", category: "Compliance", weight: 1.5 },
+  { id: "accessibility_basics", name: "Basis-Barrierefreiheit", nameEn: "Basic accessibility", category: "Technical", weight: 1.4 },
+  { id: "call_to_action", name: "Klare Handlungsaufforderung", nameEn: "Clear call to action", category: "Conversion", weight: 1.6 },
+] as const;

@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProfessionCategory {
+  DENTIST
+  LAWYER
+  VET
+  TAX_ADVISOR
+  PHYSIOTHERAPIST
+  DOCTOR_GENERAL
+  PSYCHOLOGIST
+  ACCOUNTANT
+  OTHER
+}
+
+enum ScanStatus {
+  QUEUED
+  CRAWLING
+  ANALYZING
+  COMPLETED
+  FAILED
+}
+
+enum ScanType {
+  FREE
+  PREMIUM_SINGLE
+  PREMIUM_TRIPLE
+}
+
+enum ReportTier {
+  FREE
+  BASIC
+  ADVANCED
+}
+
+model Scan {
+  id          String   @id @default(cuid())
+  websiteUrl  String
+  profession  ProfessionCategory
+  canton      String
+  city        String?
+  email       String?
+  scanType    ScanType @default(FREE)
+  reportTier  ReportTier @default(FREE)
+  status      ScanStatus @default(QUEUED)
+  errorMessage String?
+  isPremium   Boolean  @default(false)
+  clientIpHash String?
+
+  crawlData   Json?
+  useCaseResults Json?
+  statusShiftAnalysis String?
+  fiveAngleAnalysis   String?
+  critiqueAnalysis   String?
+  premiumUseCaseResults Json?
+  pdfUrl      String?
+
+  overallScore Float?
+
+  createdAt   DateTime @default(now())
+  completedAt DateTime?
+
+  payments    Payment[]
+  scanEligibility ScanEligibility?
+
+  @@index([websiteUrl])
+  @@index([status])
+  @@index([email])
+}
+
+model ScanEligibility {
+  id          String   @id @default(cuid())
+  userKey     String
+  websiteUrl  String
+  scanId      String   @unique
+  scan        Scan     @relation(fields: [scanId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+
+  @@unique([userKey, websiteUrl])
+  @@index([userKey])
+}
+
+model Payment {
+  id              String   @id @default(cuid())
+  scanId          String
+  stripeSessionId String?  @unique
+  amountChf       Int
+  status          String
+  createdAt       DateTime @default(now())
+
+  scan            Scan     @relation(fields: [scanId], references: [id], onDelete: Cascade)
+
+  @@index([scanId])
+}
